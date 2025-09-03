@@ -11,7 +11,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: #0b0b0f;
+      background: #000000;
     }
     #jup-container {
       width: 400px;
@@ -25,24 +25,22 @@
 <body>
   <div id="jup-container"></div>
 
-  <script src="https://plugin.jup.ag/plugin-v1.js" async></script>
+  <!-- Jupiter Plugin laden -->
+  <script src="https://plugin.jup.ag/plugin-v1.js"></script>
   <script>
-    (function initJupiter() {
-      const el = document.getElementById('jup-container');
-      if (window.Jupiter && el) {
+    window.addEventListener("load", () => {
+      if (window.Jupiter) {
         window.Jupiter.init({
-          displayMode: "integrated",   // nur Swap-Fenster
+          displayMode: "integrated",   // nur das Swap-Fenster
           hideHeader: true,            // kein Branding
-          container: el,
-          endpoint: "https://quote-api.jup.ag/v6/quote",
+          container: document.getElementById("jup-container"),
           defaultInputMint: "So11111111111111111111111111111111111111112", // SOL
           defaultOutputMint: "AFk1RUr18RCFjhKHQN7ufxPBiQYWjXifAw4y4n44jups", // Priceless
-          defaultAmount: 0.1
+          defaultAmount: 0.1           // Startmenge
         });
-      } else {
-        setTimeout(initJupiter, 60);
       }
-    })();
+    });
   </script>
 </body>
 </html>
+
