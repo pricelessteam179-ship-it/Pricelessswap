@@ -11,36 +11,35 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: #000000;
+      background: #000;
     }
     #jup-container {
       width: 400px;
       height: 568px;
       border-radius: 16px;
       overflow: hidden;
-      background: #0a0a0a;
     }
   </style>
 </head>
 <body>
+  <!-- Container für den Swap -->
   <div id="jup-container"></div>
 
-  <!-- Jupiter Plugin laden -->
-  <script src="https://plugin.jup.ag/plugin-v1.js"></script>
-  <script>
-    window.addEventListener("load", () => {
-      if (window.Jupiter) {
-        window.Jupiter.init({
-          displayMode: "integrated",   // nur das Swap-Fenster
-          hideHeader: true,            // kein Branding
-          container: document.getElementById("jup-container"),
-          defaultInputMint: "So11111111111111111111111111111111111111112", // SOL
-          defaultOutputMint: "AFk1RUr18RCFjhKHQN7ufxPBiQYWjXifAw4y4n44jups", // Priceless
-          defaultAmount: 0.1           // Startmenge
-        });
-      }
-    });
+  <!-- Plugin mit onload-Init -->
+  <script 
+    src="https://plugin.jup.ag/plugin-v1.js"
+    onload="
+      window.Jupiter.init({
+        displayMode: 'integrated',
+        hideHeader: true,
+        container: document.getElementById('jup-container'),
+        defaultInputMint: 'So11111111111111111111111111111111111111112',   // SOL
+        defaultOutputMint: 'AFk1RUr18RCFjhKHQN7ufxPBiQYWjXifAw4y4n44jups', // Priceless
+        defaultAmount: 0.1
+      });
+    ">
   </script>
 </body>
 </html>
+
 
