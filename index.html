@@ -22,24 +22,30 @@
   </style>
 </head>
 <body>
-  <!-- Container für den Swap -->
   <div id="jup-container"></div>
 
-  <!-- Plugin mit onload-Init -->
-  <script 
-    src="https://plugin.jup.ag/plugin-v1.js"
-    onload="
-      window.Jupiter.init({
-        displayMode: 'integrated',
-        hideHeader: true,
-        container: document.getElementById('jup-container'),
-        defaultInputMint: 'So11111111111111111111111111111111111111112',   // SOL
-        defaultOutputMint: 'AFk1RUr18RCFjhKHQN7ufxPBiQYWjXifAw4y4n44jups', // Priceless
-        defaultAmount: 0.1
-      });
-    ">
+  <!-- Jupiter Plugin Script -->
+  <script src="https://plugin.jup.ag/plugin-v1.js"></script>
+  <script>
+    // Sicherstellen, dass das Plugin geladen ist
+    function initJupiter() {
+      if (window.Jupiter && document.getElementById('jup-container')) {
+        window.Jupiter.init({
+          displayMode: 'integrated',
+          hideHeader: true,
+          container: document.getElementById('jup-container'),
+          defaultInputMint: 'So11111111111111111111111111111111111111112',   // SOL
+          defaultOutputMint: 'AFk1RUr18RCFjhKHQN7ufxPBiQYWjXifAw4y4n44jups', // Priceless
+          defaultAmount: 0.1
+        });
+      } else {
+        // Wenn noch nicht geladen → 100ms warten und erneut versuchen
+        setTimeout(initJupiter, 100);
+      }
+    }
+
+    // Starten
+    initJupiter();
   </script>
 </body>
 </html>
-
-
