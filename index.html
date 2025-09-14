@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Priceless Swap</title>
+  <script src="https://terminal.jup.ag/main-v3.js" data-preload></script>
   <style>
+
     body {
       margin: 0;
       display: flex;
@@ -13,40 +15,26 @@
       height: 100vh;
       background-color: #000;
     }
-    #jup-container {
-      width: 400px;
-      height: 568px;
-      border-radius: 16px;
-      overflow: hidden;
-    }
   </style>
 </head>
 <body>
   <div id="jup-container"></div>
-
-  <!-- Jupiter Plugin Script -->
-  <script src="https://plugin.jup.ag/plugin-v1.js"></script>
-  <script>
-    // Funktion, die wiederholt prüft, bis Plugin und Container existieren
-    function initJupiter() {
-      const container = document.getElementById('jup-container');
-      if (window.Jupiter && container) {
-        window.Jupiter.init({
-          displayMode: 'integrated',
-          hideHeader: true,
-          container: container,
-          defaultInputMint: 'So11111111111111111111111111111111111111112',   // SOL
-          defaultOutputMint: 'AFk1RUr18RCFjhKHQN7ufxPBiQYWjXifAw4y4n44jups', // Priceless
-          defaultAmount: 0.1
-        });
-      } else {
-        // Falls noch nicht geladen → 100ms warten und erneut prüfen
-        setTimeout(initJupiter, 100);
-      }
-    }
-
-    // Warten bis DOM fertig ist
-    document.addEventListener('DOMContentLoaded', initJupiter);
-  </script>
+      <div id="integrated-terminal">
+        <!-- Jupiter Plugin: Do Not Touch -->
+        <script>
+            window.Jupiter.init({
+                displayMode: "integrated",
+                integratedTargetId: "integrated-terminal",
+                // 👇 REPLACE THIS WITH YOUR OWN HTTP PROVIDER ENDPOINT
+                endpoint: "https://mainnet.helius-rpc.com/?api-key=ba26b64a-dbb4-4743-8abc-874a3e6e4aca", 
+                formProps: {
+                    fixedOutputMint: false,
+                    initialInputMint: "So11111111111111111111111111111111111111112",   // Solana
+                    initialOutputMint: "AFk1RUr18RCFjhKHQN7ufxPBiQYWjXifAw4y4n44jups", // Crumb 
+                }
+            });
+        </script>
+        </div>
+    </div>
 </body>
 </html>
